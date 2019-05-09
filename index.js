@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const hallsController = require('./route-handlers/halls/controller');
+const halls = require('./route-handlers/halls');
+const users = require('./route-handlers/users')
 const app = express();
 const port = 3000;
 
@@ -12,8 +13,8 @@ app.use(
 )
 
 
-app.get('/halls', hallsController.getHalls);
-app.get('/halls/:hallUId', hallsController.getSingleHall);
+app.use(halls);
+app.use(users);
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
