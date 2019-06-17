@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-
-const router = new express.Router();
+const halls = require('./route-handlers/halls');
+const users = require('./route-handlers/users')
 const app = express();
 const port = 3000;
 
@@ -12,13 +12,9 @@ app.use(
   })
 )
 
-// TODO: Base routes
 
-// Test route
-router.get('/', (req, res) => {
-  res.send('ok');
-});
+app.use(halls);
+app.use(users);
 
-app.use('/', router);
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.listen(port, () => console.log(`Listening on port ${port}!`));
